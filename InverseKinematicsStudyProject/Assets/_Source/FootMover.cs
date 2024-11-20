@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class FootMover : MonoBehaviour
 {
-    public Vector3 NewTarget { get; set; }
-
     [SerializeField] private Transform targetPoint;
     [SerializeField] private float distance;
     [SerializeField] private float maxHeightDistance;
@@ -15,19 +13,13 @@ public class FootMover : MonoBehaviour
 
     private float _currentTime = 1.0f;
 
-    private void Start()
-    {
-        NewTarget = targetPoint.position;
-    }
-
     private void Update()
     {
         if (Physics.Raycast(transform.position, transform.up, out RaycastHit hit))
         {
-            if (Vector3.Distance(hit.point, -targetPoint.position) > distance)
+            if (Vector3.Distance(hit.point, targetPoint.position) > distance)
             {
                 _currentTime = 0;
-                NewTarget = hit.point;
             }
 
             if (_currentTime < 1)
