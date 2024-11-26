@@ -15,7 +15,7 @@ public class FootMover : MonoBehaviour
 
     private void Update()
     {
-        if (Physics.Raycast(transform.position, transform.up, out RaycastHit hit))
+        if (Physics.Raycast(transform.position, -transform.up, out RaycastHit hit))
         {
             if (Vector3.Distance(hit.point, targetPoint.position) > distance)
             {
@@ -30,5 +30,15 @@ public class FootMover : MonoBehaviour
                 _currentTime += Time.deltaTime * speed;
             }
         }
+    }
+
+    public void ForceMove()
+    {
+        _currentTime = 1;
+    }
+
+    public void ForceStop()
+    {
+        _currentTime = 0;
     }
 }
